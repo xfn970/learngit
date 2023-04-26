@@ -38,11 +38,11 @@
 
 如果修改了工作区（文档内容，但是没有add），显示下面状态
 
-<img src="./../../../AppData/Roaming/Typora/typora-user-images/image-20230426113207371.png" alt="image-20230426113207371" style="zoom:67%;" />
+<img src="./pictures/image-20230426113207371.png" style="zoom:80%;" />
 
 如果add至暂缓区但是没有commit提交
 
-<img src="./../../../AppData/Roaming/Typora/typora-user-images/image-20230426113214082.png" alt="image-20230426113214082" style="zoom:67%;" />
+<img src="./pictures/image-20230426113214082.png" style="zoom:80%;" />
 
 `git reset HEAD xxx` 可以撤销add
 
@@ -76,7 +76,7 @@ $ git remote add origin [git@github.com:**xfn970**/learngit.git](mailto:git@gith
 
 **注意：**第一次push或者clone的时候会出现以下内容，直接回车即可
 
-<img src="./../../../AppData/Roaming/Typora/typora-user-images/image-20230426114507660.png" alt="image-20230426114507660" style="zoom:67%;" />
+<img src="./pictures/image-20230426114507660.png" style="zoom:80%;" />
 
 ## 先创建远程库，然后从远程库克隆
 
@@ -110,25 +110,25 @@ git clone https://github.com/xfn970/gitskills.git
 
 一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点
 
-![image-20230418193435890](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418193435890.png)
+<img src="./pictures/image-20230418193435890.png" style="zoom:80%;" />
 
 1、`git switch -c dev` 新建dev分支并切换到该分支  
 
 **==注意==**：这里的dev是基于master分支开发出来的，因此它的内容是**基于**master分支的内容的，因此master所拥有的bug，dev也会有这个bug
 
-![image-20230418193449068](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418193449068.png)
+<img src="./pictures/image-20230418193449068.png" style="zoom:80%;" />
 
 2、`git branch` 查看分支 ***代表当前分支**
 
 3、此时我们对里面的所有操作都是在dev分支上进行操作，比如给readme添加内容-》add文件-》commit修改
 
-![image-20230418193515788](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418193515788.png)
+<img src="./pictures/image-20230418193515788.png" style="zoom:80%;" />
 
 4、当我们用`git switch master` 切换分支回到master的时候就会发现readme内容也会回到之前的状态，即第三步操作会消失，因为我们之前的提交是在dev分支上，而master的提交点并没有改变
 
 5、`git merge <name>` 合并dev分支到当前分支
 
-![image-20230418193710664](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418193710664.png)
+<img src="./pictures/image-20230418193710664.png" style="zoom:80%;" />
 
 此时Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快。
 
@@ -148,19 +148,17 @@ git clone https://github.com/xfn970/gitskills.git
 
 （3）此时产生冲突，即如下图所示
 
-<img src="C:\Users\XFN\AppData\Roaming\Typora\typora-user-images\image-20230418114402462.png" alt="image-20230418114402462" style="zoom:80%;" />
+<img src="./pictures/image-20230418114402462.png" style="zoom:80%;" />
 
 （4）此时再master上快速合并fe1，就会产生冲突报错（会告知错误的文件是readme.txt）,打开txt也会显示错误的地方，Git用`<<<<<<<`，`=======`，`>>>>>>>`标记出不同分支的内容
 
-![image-20230418131900460](C:\Users\XFN\AppData\Roaming\Typora\typora-user-images\image-20230418131900460.png)
+<img src="./pictures/image-20230418131900460.png" style="zoom:80%;" />
 
-![image-20230418132023694](C:\Users\XFN\AppData\Roaming\Typora\typora-user-images\image-20230418132023694.png)
+<img src="./pictures/image-20230418132023694.png" style="zoom:80%;" />
 
 ### 解决冲突
 
 （1）将冲突的部分删除，重新写成自己想要的内容后，保存，再add+commit，此时master合并成功
-
-![image-20230418132238071](C:\Users\XFN\AppData\Roaming\Typora\typora-user-images\image-20230418132238071.png)
 
 （2）使用`git log --graph --pretty=oneline --abbrev-commit`可以查看分支情况，其中左边的都是master分支上的内容，右边是其他分支，从下往上是每个提交的版本号的展示
 
@@ -168,7 +166,7 @@ git clone https://github.com/xfn970/gitskills.git
 
 （**注意：**其实fe1分支最后的节点是不指向合并后的提交节点的，这个有点类似于说我发现了冲突的地方之后，我就直接在master分支上对文档修改后再提交，就不关分支fe1的事情了）
 
-![image-20230418132704186](C:\Users\XFN\AppData\Roaming\Typora\typora-user-images\image-20230418132704186.png)
+<img src="./pictures/image-20230418132704186.png" style="zoom:80%;" />
 
 （3）最后利用`git branch -d fe1`，删除fe1分支
 
@@ -184,11 +182,11 @@ git clone https://github.com/xfn970/gitskills.git
 
 （2）切换回到master分支，利用`git merge --no-ff -m "merge with no-ff" dev`合并dev分支（禁止快速合并），因为本次合并要创建一个新的commit，所以加上`-m`参数，把commit描述写进去。
 
-![image-20230418200656982](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418200656982.png)
+<img src="./pictures/image-20230418200656982.png" style="zoom:80%;" />
 
-![image-20230418201426169](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418201426169.png)
+<img src="./pictures/image-20230418201426169.png" style="zoom:80%;" />
 
-<img src="./../../../AppData/Roaming/Typora/typora-user-images/image-20230418201515283.png" alt="image-20230418201515283" style="zoom:80%;" />
+<img src="./pictures/image-20230418201515283.png" style="zoom:80%;" />
 
 在实际开发中，我们应该按照几个基本原则进行**==分支管理==**：
 
@@ -200,17 +198,17 @@ git clone https://github.com/xfn970/gitskills.git
 
 所以，团队合作的分支看起来就像这样：
 
-![image-20230418203728918](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418203728918.png)
+<img src="./pictures/image-20230418203728918.png" style="zoom:80%;" />
 
 ## 快进模式和非快进模式的区别
 
 （1）快进模式是直接令master指向dev的当前提交节点，再删除dev分支，这种情况下删除后的分支是不会保留操作信息的
 
-![image-20230418203537691](./../../../AppData/Roaming/Typora/typora-user-images/image-20230418203537691.png)
+<img src="./pictures/image-20230418203537691.png" style="zoom:80%;" />
 
 （2）非快进模式则是会在master分支上产生新的提交节点，新的提交节点则是两个分支的合并结果
 
-<img src="./../../../AppData/Roaming/Typora/typora-user-images/image-20230418203551362.png" alt="image-20230418203551362" style="zoom:67%;" />
+<img src="./pictures/image-20230418203551362.png" style="zoom:80%;" />
 
 看到别人的理解：这里的--no--ff 模式其实就是相当于master指针new了一个跟dev指针一样的空间并且放了相同的内容然后指向这个空间。而原来的快速模式，就是简单将master指针指向dev指针指向的内容而已，并没有自己创造空间。
 
@@ -364,7 +362,7 @@ git commit 会在 git log 里面留下一次 log, 而你push之后别人是可�
 
 因此就需要用到git status将该分支目前的工作内容暂存起来
 
-![image-20230419225507764](./../../../AppData/Roaming/Typora/typora-user-images/image-20230419225507764.png)
+<img src="./pictures/image-20230419225507764.png" style="zoom:80%;" />
 
 ## 关于多人协作的开发流程
 

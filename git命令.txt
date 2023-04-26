@@ -1,0 +1,36 @@
+ 初始化仓库
+git init -----将当前这个目录变成git可以管理的【仓库】  右击目录点击git bash here  最后会生成一个.git文件，用来跟踪管理版本库的
+
+文件放入仓库
+git add xxx----将文件添加到仓库（这个文件必须建立在这个目录的目录/子目录下）------这里是将文件提交给了.git版本库中的暂存区（stage/index） 
+git commit -m "解释本次提交操作" ---------把文件提交到仓库-------这里是【一次性】将暂存区中的所有添加修改提交到master分支当中（master也是存在于.git版本库当中的）
+包括删除的操作，也需要commit再次更新
+
+git status-----查看仓库当前状态（有文件是否修改，修改后是否未添加和提交）
+git diff-----查看文件修改内容（文本文件可以查看具体内容）
+git log-----显示最近到最远的提交日志  head对应当前版本   $ git log --pretty=oneline可以查看版本号
+git reflog-----查看历史命令
+git reset --hard HEAD^------将文件回退到上一个版本（HEAD^表示上一个版本，HEAD^^表示上上个版本）
+git reset还可以向前版本，即根据之前的log日志，查看之前的版本号，再hard后面跟上版本号前几个字母，就可以回到那个版本号
+ 
+撤销操作
+git checkout -- xxx -------更改xxx文件回到最近一次commit时或者add时的状态（前提时这个文件没有被commit），其实这个命令是用版本库里面的版本替换工作区的版本，无论工作区时修改还是删除，都可以一键还原
+git reset HEAD xxx--------可以把暂存区的修改撤销掉，重新放回工作区
+
+删除操作
+git rm xxx------从版本库中删除某文件  +    git commit-----删除也是一种修改，需要再次提交
+
+远程仓库：
+我们的github仓库就类似于一个服务器仓库（大家远程提交项目拉项目的地方），通过在github账号配置ssh key，这样github就知道是谁再推送内容了
+通过 git remote add origin git@github.com:xfn970/learngit.git关联当前本地库和github上的learngit库
+第一次使用git push -u origin master进行提交分支，后面都用git push origin master直接提交
+git remote -v查看远程库信息
+git remote rm origin 此处的“删除”其实是解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动。要真正删除远程库，需要登录到GitHub，在后台页面找到删除按钮再删除。
+
+分支
+git branch  查看分支 *代表当前分支
+git branch <name> 创建分支
+git switch <name> 切换分支
+git switch -c <name> 新建并切换到该分支
+git merge <name>  合并name分支到当前分支
+git branch -d <name> 删除name分支
